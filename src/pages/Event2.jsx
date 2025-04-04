@@ -84,7 +84,8 @@ const FilterSection = ({ filters, setFilters }) => {
           type="date"
           className="p-2 border rounded-lg w-full"
           name="endDate"
-          onChange={filters.endDate}
+          value={filters.endDate}
+          onChange={handleFilterChange}
           placeholder="End Date"
         />
       </div>
