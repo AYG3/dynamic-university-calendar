@@ -28,10 +28,10 @@ const FilterSection = ({ filters, setFilters }) => {
       <select
         className="p-2 border rounded-lg w-full"
         name="category"
-        value={filters.category}
+        value={filters.category || "Category"}
         onChange={handleFilterChange}
       >
-        <option value="Category" disabled>
+        <option value="Category" >
           Category
         </option>
         <option value="General Announcements">General Announcements</option>
@@ -164,7 +164,7 @@ const AddEvent = () => {
   };
 
   return (
-    <div className="bg-gray-100 p-6 rounded-lg shadow-md w-full max-w-lg mx-auto mt-8">
+    <div className="bg-gray-100 p-6 rounded-lg shadow-md w-full max-w-lg mx-auto mt-8 text-gray-900">
       <h2 className="text-xl font-bold mb-4 text-center text-gray-800">Add Event</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* TITLE */}
