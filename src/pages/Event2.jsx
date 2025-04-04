@@ -108,7 +108,7 @@ const ShowEvents = ({ filters }) => {
         <div className="text-black mt-6 w-full">
             <h1 className="text-2xl font-bold mb-4 text-center">Show Events</h1>
             {event.length > 0 ? (
-                <div className="flex w-full justify-center items-center">
+                <div className="flex flex-col w-full">
                     {event.map((event) => (
                         <div
                             key={event._id}
@@ -220,7 +220,18 @@ const AddEvent = () => {
             <option value="Business">Business</option>
           </select>
         </div>
-
+        {/* DESCRIPTION */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+          <input
+            type="text"
+            name="description"
+            value={event.description}
+            onChange={handleInputChange}
+            className="p-2 border rounded-lg w-full"
+            placeholder="Enter event description"
+          />
+        </div>
         <button
           type="submit"
           className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 w-full"
