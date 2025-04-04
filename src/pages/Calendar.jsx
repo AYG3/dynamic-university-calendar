@@ -99,22 +99,56 @@ const FilterSection = ({ filters, setFilters }) => {
   );
 };
 
-const CalendarGrid = () => (
-  <div className="grid grid-cols-7 gap-2 text-center mb-6 text-black">
-    {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-      <div key={day} className="font-bold">
-        {day}
-      </div>
-    ))}
-    <div className="p-2 text-gray-400 border border-black rounded-lg">31</div>
-    <div className="p-2 border border-black rounded-lg bg-blue-400">1</div>
-    <div className="p-2 border border-black rounded-lg">2</div>
-    <div className="p-2 border border-black rounded-lg bg-green-400">3</div>
-    <div className="p-2 border border-black rounded-lg">4</div>
-    <div className="p-2 border border-black rounded-lg">5</div>
-    <div className="p-2 border border-black rounded-lg">6</div>
-  </div>
-);
+const CalendarGrid = ({ events }) => {
+  // Generate a mock calendar for the current month (e.g., April 2025)
+  const daysInMonth = 30; // Adjust based on the month
+  const firstDayOfMonth = 2; // Assume the first day of the month is a Wednesday (0 = Sunday)
+
+  const calendarDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+  return (
+    <div className="grid grid-cols-7 gap-2 text-center mb-6 text-black">
+      {/* Weekday Headers */}
+      {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+        <div key={day} className="font-bold">
+          {day}
+        </div>
+      ))}
+
+      {/* Empty cells for days before the first day of the month */}
+      {Array.from({ length: firstDayOfMonth }).map((_, i) => (
+        <div key={`empty-${i}`} className="p-2"></div>
+      ))}
+
+      {/* Calendar Days */}
+      {calendarDays.map((day) => {
+        // Check if there are events on this day
+        const dayEvents = events.filter(
+          (event) => new Date(event.date).getDate() === day
+        );
+
+        return (
+          <div
+            key={day}
+            className={`p-2 border border-black rounded-lg ${
+              dayEvents.length > 0 ? "bg-blue-400 text-white" : ""
+            }`}
+          >
+            {day}
+            {dayEvents.length > 0 && (
+              <div className="text-xs mt-1">
+                {dayEvents.map((event) => (
+                  <p key={event._id}>{event.title}</p>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 
 const ShowEvents = ({ filters }) => {
   const [ event, setEvents ] = useState([])
@@ -162,6 +196,19 @@ const ShowEvents = ({ filters }) => {
 
 const EventCalendar = () => {
   const [filters, setFilters] = useState({})
+  const [events, setEvents] = useState([])
+
+  const fetchEvents = async () => {
+    try {
+      const res = await getEvents(filters)
+      setEvents(response)
+    } catch (error) {
+      console.log("Error getting events: ", res);
+    }
+
+    fetchEvents()
+  }
+
 
   return (
     <div className="bg-gray-100 container p-4 sm:p-6 min-h-screen min-w-screen flex justify-center items-start ">
