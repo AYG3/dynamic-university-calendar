@@ -163,13 +163,15 @@ const AddEvent = () => {
   return (
     <div className="border-2 border-amber-400 w-full text text-black">
       <h2>Add Event</h2>
-
+      {/* TITLE */}
       <div>
         <label>Event title</label>
         <input type="text" name="title" value={event.title} onChange={handleInputChange}/>
       </div>
+
+      {/* CATEGORY */}
       <div>
-        <label>Event Category</label>
+        <label>Category</label>
         <select value={event.category || "category"} name="category" onChange={handleInputChange} >
           <option value="category" disabled> Category </option>
           <option value="General Announcements"> General Announcements </option>
@@ -180,9 +182,13 @@ const AddEvent = () => {
           <option value="Events">Events</option>
         </select>
       </div>
+      
+      {/* DEPARTMENT */}
       <div>
-        <label>Event title</label>
-        <input type="text" name="title" value={event.title} onChange={handleInputChange}/>
+        <label>Department</label>
+        <select name="department" value={event.department} onChange={handleInputChange}>
+          
+        </select>
       </div>
     </div>
   )
