@@ -15,6 +15,7 @@ const FilterSection = ({ filters, setFilters }) => {
         setFilters({
             category: "Category",
             department: "Department",
+            description: "Description",
             startDate: "01/08/2005",
             endDate: "06/12/2025"
         });
@@ -33,11 +34,11 @@ const FilterSection = ({ filters, setFilters }) => {
         <option value="Category" disabled>
           Category
         </option>
+        <option value="General Announcements">General Announcements</option>
         <option value="Seminars">Seminars</option>
         <option value="Workshops">Workshops</option>
         <option value="Sports">Sports</option>
         <option value="Services">Services</option>
-        <option value="General Announcements">General Announcements</option>
         <option value="Events">Events</option>
       </select>
 
