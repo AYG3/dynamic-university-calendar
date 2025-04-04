@@ -138,9 +138,22 @@ const ShowEvents = ({ filters }) => {
 }
 
 const AddEvent = () => {
-  const [ event, setEvent ] = useState({})
+  const [ event, setEvent ] = useState({
+    title: "",
+    category: "",
+    department: ""
+  })
 
-  
+  return (
+    <div className="border-2 border-amber-400 w-full text text-black">
+      <h2>Add Event</h2>
+
+      <div>
+        <label>Event title</label>
+        <input type="text" name="title" id="" />
+      </div>
+    </div>
+  )
 }
 const Event2 = () => {
     const [filters, setFilters] = useState({});
@@ -149,6 +162,7 @@ const Event2 = () => {
         <div className="bg-white min-h-screen min-w-screen flex flex-col mx-auto overflow-hidden">
             <FilterSection filters={filters} setFilters={setFilters}/>
             <ShowEvents filters={filters} />
+            <AddEvent />
         </div>
     )
 }
