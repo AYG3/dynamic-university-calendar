@@ -137,6 +137,11 @@ const ShowEvents = ({ filters }) => {
     );
 }
 
+const AddEvent = () => {
+  const [ event, setEvent ] = useState({})
+
+  
+}
 const Event2 = () => {
     const [filters, setFilters] = useState({});
 
