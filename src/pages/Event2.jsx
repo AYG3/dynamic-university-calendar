@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getEvents } from "../services/api";
+import { createEvent, getEvents } from "../services/api";
 
 const FilterSection = ({ filters, setFilters }) => {
     const handleFilterChange = (e) => {
@@ -156,8 +156,14 @@ const AddEvent = () => {
     }))
   }
 
-  const handleSubmit = () => {
-
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await createEvent(event)
+      console.log("Create event, event: ", response)
+    } catch (error) {
+      console.log("Error cerating event: ", error);
+    }
   }
 
   return (
