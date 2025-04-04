@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getEvents } from "../services/api";
 
 const FilterSection = ({ filters, setFilters }) => {
     const handleFilterChange = (e) => {
@@ -35,6 +36,9 @@ const FilterSection = ({ filters, setFilters }) => {
         <option value="Seminars">Seminars</option>
         <option value="Workshops">Workshops</option>
         <option value="Sports">Sports</option>
+        <option value="Services">Services</option>
+        <option value="General Announcements">General Announcements</option>
+        <option value="Events">Events</option>
       </select>
 
       {/* DEPARTMENT */}
@@ -47,9 +51,12 @@ const FilterSection = ({ filters, setFilters }) => {
         <option value="Department" disabled>
           Department
         </option>
+        <option value="General">General</option>
         <option value="Computer Science">Computer Science</option>
         <option value="Engineering">Engineering</option>
         <option value="Business">Business</option>
+        <option value="Mathematics">Mathematics</option>
+        {/* enum: ["General", "Computer Science", "Mathematics", "Engineering", "Business"] */}
       </select>
       
       {/* START DATE */}
@@ -84,13 +91,57 @@ const FilterSection = ({ filters, setFilters }) => {
   );
 };
 
+const ShowEvents = ({ filters }) => {
+    const [ event, setEvents ] = useState([])
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            const events = await getEvents(filters);
+            setEvents(events)
+          }
+          fetchEvents()
+    }, [filters])
+
+    return (
+        <div className="text-black mt-6 w-full">
+            <h1 className="text-2xl font-bold mb-4 text-center">Show Events</h1>
+            {event.length > 0 ? (
+                <div className="flex w-full justify-center items-center">
+                    {event.map((event) => (
+                        <div
+                            key={event._id}
+                            className="bg-white shadow-md rounded-lg p-4 border border-gray-200 w-full"
+                        >
+                            <h2 className="text-lg font-semibold mb-2">{event.title}</h2>
+                            <p className="text-sm text-gray-600 mb-1">
+                                <span className="font-medium">Department:</span> {event.department}
+                            </p>
+                            <p className="text-sm text-gray-600 mb-1">
+                                <span className="font-medium">Category:</span> {event.category}
+                            </p>
+                            <p className="text-sm text-gray-600 mb-1">
+                                <span className="font-medium">Date:</span> {new Date(event.date).toLocaleDateString()}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                                <span className="font-medium">Description:</span> {event.description}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <p className="text-gray-500 text-center">No Events Available</p>
+            )}
+        </div>
+    );
+}
+
 const Event2 = () => {
     const [filters, setFilters] = useState({});
 
     return (
         <div className="bg-white min-h-screen min-w-screen flex flex-col mx-auto overflow-hidden">
             <FilterSection filters={filters} setFilters={setFilters}/>
-            
+            <ShowEvents filters={filters} />
         </div>
     )
 }
