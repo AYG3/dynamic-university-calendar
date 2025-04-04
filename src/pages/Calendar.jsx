@@ -201,9 +201,9 @@ const EventCalendar = () => {
   const fetchEvents = async () => {
     try {
       const res = await getEvents(filters)
-      setEvents(response)
+      setEvents(res)
     } catch (error) {
-      console.log("Error getting events: ", res);
+      console.log("Error getting events: ", error);
     }
 
     fetchEvents()
@@ -217,7 +217,7 @@ const EventCalendar = () => {
           University Event Calendar
         </h1>
         <FilterSection setFilters={setFilters} filters={filters} />
-        <CalendarGrid />
+        <CalendarGrid events={events} />
         <ShowEvents filters={filters} />
       </div>
     </div>
