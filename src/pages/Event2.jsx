@@ -187,7 +187,10 @@ const AddEvent = () => {
       <div>
         <label>Department</label>
         <select name="department" value={event.department} onChange={handleInputChange}>
-          
+          <option value="department">Department</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Mathematics">Mathematics</option>
         </select>
       </div>
     </div>
