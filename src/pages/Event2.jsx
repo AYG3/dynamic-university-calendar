@@ -145,19 +145,44 @@ const AddEvent = () => {
   })
 
   const handleInputChange = (e) => {
-    const {name, value} = 
+    const {name, value} = e.target;
+
+    console.log("Name: ", name)
+    console.log("Value: ", value)
+
     setEvent((prev) => ({
       ...prev,
       [name]: value
     }))
   }
+
+  const handleSubmit = () => {
+
+  }
+
   return (
     <div className="border-2 border-amber-400 w-full text text-black">
       <h2>Add Event</h2>
 
       <div>
         <label>Event title</label>
-        <input type="text" name="title" value={event} />
+        <input type="text" name="title" value={event.title} onChange={handleInputChange}/>
+      </div>
+      <div>
+        <label>Event Category</label>
+        <select value={event.category || "category"} name="category" onChange={handleInputChange} >
+          <option value="category" disabled> Category </option>
+          <option value="General Announcements"> General Announcements </option>
+          <option value="Seminars"> Seminars </option>
+          <option value="Workshops"> Workshops </option>
+          <option value="Sports">Sports</option>
+          <option value="Services">Services</option>
+          <option value="Events">Events</option>
+        </select>
+      </div>
+      <div>
+        <label>Event title</label>
+        <input type="text" name="title" value={event.title} onChange={handleInputChange}/>
       </div>
     </div>
   )
