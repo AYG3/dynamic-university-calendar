@@ -144,13 +144,18 @@ const AddEvent = () => {
     department: ""
   })
 
+  const handleInputChange = (e) => {
+    setEvent((prev) => {
+      
+    })
+  }
   return (
     <div className="border-2 border-amber-400 w-full text text-black">
       <h2>Add Event</h2>
 
       <div>
         <label>Event title</label>
-        <input type="text" name="title" id="" />
+        <input type="text" name="title" value={event} />
       </div>
     </div>
   )
