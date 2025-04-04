@@ -187,12 +187,18 @@ const AddEvent = () => {
       <div>
         <label>Department</label>
         <select name="department" value={event.department} onChange={handleInputChange}>
-          <option value="department">Department</option>
+          <option value="department" disabled>Department</option>
+          <option value="General">General</option>
           <option value="Computer Science">Computer Science</option>
           <option value="Engineering">Engineering</option>
           <option value="Mathematics">Mathematics</option>
+          <option value="Business">Business</option>
         </select>
       </div>
+      
+      <button onClick={handleSubmit} className="text-white">
+        Add Event
+      </button>
     </div>
   )
 }
