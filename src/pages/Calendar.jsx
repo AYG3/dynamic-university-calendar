@@ -1,33 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getEvents } from "../services/api";
 
-// const FilterSection = ({ filters, setFilters }) => {
-//   const handleFilterChange = (e) => {
-//     setFilters((prev) => (
-//       {...prev, [e.target.name]: e.target.value}
-//     ))
-//     console.log("Filter: ", filters)
-//   }
-  
-//   return(
-//     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 w-full text-black">
-//       <select className="p-2 border rounded-lg w-full" onChange={handleFilterChange} name="category">
-//         <option value="Category" disabled>Category</option>
-//         <option>Seminars</option>
-//         <option>Workshops</option>
-//         <option>Sports</option>
-//       </select>
-//       <select className="p-2 border rounded-lg w-full" onChange={handleFilterChange}>
-//         <option disabled>Department</option>
-//         <option>Computer Science</option>
-//         <option>Engineering</option>
-//         <option>Business</option>
-//       </select>
-//       <input type="date" className="p-2 border rounded-lg w-full" onChange={handleFilterChange}/>
-//     </div>
-//   )
-// }
-
 const FilterSection = ({ filters, setFilters }) => {
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
