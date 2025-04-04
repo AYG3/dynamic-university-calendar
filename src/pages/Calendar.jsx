@@ -48,44 +48,56 @@ const FilterSection = ({ filters, setFilters }) => {
   }, [setFilters]);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6 w-full text-black">
-      <select
-        className="p-2 border rounded-lg w-full"
-        name="category"
-        value={filters.category}
-        onChange={handleFilterChange}
-      >
-        <option value="Category" disabled>
+    <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 mb-6 w-full text-black">
+      <div className="flex flex-col">
+        <label htmlFor="category" className="text-sm font-medium text-gray-700 mb-1">
           Category
-        </option>
-        <option value="Seminars">Seminars</option>
-        <option value="Workshops">Workshops</option>
-        <option value="Sports">Sports</option>
-      </select>
-      <select
-        className="p-2 border rounded-lg w-full"
-        name="department"
-        value={filters.department}
-        onChange={handleFilterChange}
-      >
-        <option value="Department" disabled>
+        </label>
+        <select
+          id="category"
+          className="p-2 border rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          name="category"
+          value={filters.category}
+          onChange={handleFilterChange}
+        >
+          <option value="Category" disabled>
+            Select Category
+          </option>
+          <option value="Seminars">Seminars</option>
+          <option value="Workshops">Workshops</option>
+          <option value="Sports">Sports</option>
+        </select>
+      </div>
+      <div className="flex flex-col">
+        <label htmlFor="department" className="text-sm font-medium text-gray-700 mb-1">
           Department
-        </option>
-        <option value="Computer Science">Computer Science</option>
-        <option value="Engineering">Engineering</option>
-        <option value="Business">Business</option>
-      </select>
+        </label>
+        <select
+          id="department"
+          className="p-2 border rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          name="department"
+          value={filters.department}
+          onChange={handleFilterChange}
+        >
+          <option value="Department" disabled>
+            Select Department
+          </option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Business">Business</option>
+        </select>
+      </div>
       <div className="flex flex-col">
         <label htmlFor="startDate" className="text-sm font-medium text-gray-700 mb-1">
           Start Date
         </label>
         <input
+          id="startDate"
           type="date"
-          className="p-2 border rounded-lg w-full"
+          className="p-2 border rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
           name="startDate"
           value={filters.startDate}
           onChange={handleFilterChange}
-          placeholder="Start Date"
         />
       </div>
       <div className="flex flex-col">
@@ -93,12 +105,12 @@ const FilterSection = ({ filters, setFilters }) => {
           End Date
         </label>
         <input
+          id="endDate"
           type="date"
-          className="p-2 border rounded-lg w-full"
+          className="p-2 border rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
           name="endDate"
           value={filters.endDate}
           onChange={handleFilterChange}
-          placeholder="End Date"
         />
       </div>
     </div>
