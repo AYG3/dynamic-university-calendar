@@ -145,9 +145,11 @@ const AddEvent = () => {
   })
 
   const handleInputChange = (e) => {
-    setEvent((prev) => {
-      
-    })
+    const {name, value} = 
+    setEvent((prev) => ({
+      ...prev,
+      [name]: value
+    }))
   }
   return (
     <div className="border-2 border-amber-400 w-full text text-black">
