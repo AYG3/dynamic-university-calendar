@@ -138,63 +138,81 @@ const ShowEvents = ({ filters }) => {
 }
 
 const AddEvent = () => {
-  const [ event, setEvent ] = useState({
+  const [event, setEvent] = useState({
     title: "",
     category: "",
     department: ""
-  })
+  });
 
   const handleInputChange = (e) => {
-    const {name, value} = e.target;
-
-    console.log("Name: ", name)
-    console.log("Value: ", value)
+    const { name, value } = e.target;
 
     setEvent((prev) => ({
       ...prev,
       [name]: value
-    }))
-  }
+    }));
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const response = await createEvent(event)
-      console.log("Create event, event: ", response)
+      const response = await createEvent(event);
+      console.log("Create event, event: ", response);
     } catch (error) {
-      console.log("Error cerating event: ", error);
+      console.log("Error creating event: ", error);
     }
-  }
+  };
 
   return (
-    <div className="border-2 border-amber-400 w-full text text-black">
-      <h2>Add Event</h2>
-      {/* TITLE */}
-      <form action="" onSubmit={handleSubmit}>
+    <div className="bg-gray-100 p-6 rounded-lg shadow-md w-full max-w-lg mx-auto mt-8">
+      <h2 className="text-xl font-bold mb-4 text-center text-gray-800">Add Event</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {/* TITLE */}
         <div>
-          <label>Event title</label>
-          <input type="text" name="title" value={event.title} onChange={handleInputChange}/>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Event Title</label>
+          <input
+            type="text"
+            name="title"
+            value={event.title}
+            onChange={handleInputChange}
+            className="p-2 border rounded-lg w-full"
+            placeholder="Enter event title"
+          />
         </div>
 
         {/* CATEGORY */}
         <div>
-          <label>Category</label>
-          <select value={event.category || "category"} name="category" onChange={handleInputChange} >
-            <option value="category" disabled> Category </option>
-            <option value="General Announcements"> General Announcements </option>
-            <option value="Seminars"> Seminars </option>
-            <option value="Workshops"> Workshops </option>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+          <select
+            value={event.category || "category"}
+            name="category"
+            onChange={handleInputChange}
+            className="p-2 border rounded-lg w-full"
+          >
+            <option value="category" disabled>
+              Category
+            </option>
+            <option value="General Announcements">General Announcements</option>
+            <option value="Seminars">Seminars</option>
+            <option value="Workshops">Workshops</option>
             <option value="Sports">Sports</option>
             <option value="Services">Services</option>
             <option value="Events">Events</option>
           </select>
         </div>
-        
+
         {/* DEPARTMENT */}
         <div>
-          <label>Department</label>
-          <select name="department" value={event.department} onChange={handleInputChange}>
-            <option value="department" disabled>Department</option>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Department</label>
+          <select
+            name="department"
+            value={event.department || "department"}
+            onChange={handleInputChange}
+            className="p-2 border rounded-lg w-full"
+          >
+            <option value="department" disabled>
+              Department
+            </option>
             <option value="General">General</option>
             <option value="Computer Science">Computer Science</option>
             <option value="Engineering">Engineering</option>
@@ -202,14 +220,17 @@ const AddEvent = () => {
             <option value="Business">Business</option>
           </select>
         </div>
-        
-        <button type="submit" className="text-white">
+
+        <button
+          type="submit"
+          className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 w-full"
+        >
           Add Event
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 const Event2 = () => {
     const [filters, setFilters] = useState({});
 
