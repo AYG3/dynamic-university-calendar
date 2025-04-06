@@ -103,7 +103,7 @@ const CalendarGrid = ({ events }) => {
   // Generate a mock calendar for the current month (e.g., April 2025)
   const daysInMonth = 30; // Adjust based on the month
   const firstDayOfMonth = 2; // Assume the first day of the month is a Wednesday (0 = Sunday)
-  weekArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+  const weekArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
   const calendarDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 

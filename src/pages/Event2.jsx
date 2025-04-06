@@ -164,6 +164,7 @@ const AddEvent = () => {
     try {
       const response = await createEvent(event);
       console.log("Create event, event: ", response);
+      e.target.value = ""
     } catch (error) {
       console.log("Error creating event: ", error);
     }
@@ -248,6 +249,7 @@ const AddEvent = () => {
     </div>
   );
 };
+
 const Event2 = () => {
     const [filters, setFilters] = useState({});
 
