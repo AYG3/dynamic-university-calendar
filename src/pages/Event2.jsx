@@ -164,7 +164,12 @@ const AddEvent = () => {
     try {
       const response = await createEvent(event);
       console.log("Create event, event: ", response);
-      e.target.value = ""
+      setEvent({
+        title: "",
+        category: "",
+        department: "",
+        description: ""
+      })
     } catch (error) {
       console.log("Error creating event: ", error);
     }
