@@ -161,10 +161,23 @@ const AddEvent = () => {
     }));
   };
 
+  const notify = () => toast("Successfully Added Event")
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await createEvent(event);
+      console.log("Response: ", response);
+      console.log("Response data: ", response.data);
+      
+      if(response.status == 200){
+        console.log("Sucessful console.log response status")
+        notify()
+      }
+      else{
+        console.log(response.status)
+      }
+
       console.log("Create event, event: ", response);
       setEvent({
         title: "",
@@ -265,6 +278,7 @@ const Event2 = () => {
             <FilterSection filters={filters} setFilters={setFilters}/>
             <ShowEvents filters={filters} />
             <AddEvent />
+            <Toaster />
         </div>
     )
 }
