@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { createEvent, getEvents } from "../services/api";
 
+import toast, { Toaster } from "react-hot-toast";
+
 const FilterSection = ({ filters, setFilters }) => {
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
