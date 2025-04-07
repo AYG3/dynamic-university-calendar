@@ -22,7 +22,7 @@ export const createEvent = async (eventData) => {
         const response = await axios.post(API_URL, eventData)
         console.log(response.data)
         console.log("Response status: ",response.status)
-        return response.data
+        return response
     } catch (error) {
         console.log("Error creating event", error)
         return null
