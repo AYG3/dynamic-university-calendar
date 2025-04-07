@@ -167,10 +167,11 @@ const AddEvent = () => {
     e.preventDefault();
     try {
       const response = await createEvent(event);
-      console.log("Response: ", response);
-      console.log("Response data: ", response.data);
-      
-      if(response.status == 200){
+      const res = response.data
+      console.log("Response: ", res);
+      console.log("Response data: ", response.data.data);
+
+      if(response.data.status == 200){
         console.log("Sucessful console.log response status")
         notify()
       }
