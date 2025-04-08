@@ -104,7 +104,7 @@ const CalendarGrid = ({ events }) => {
   const daysInMonth = 30; // Adjust based on the month
   const firstDayOfMonth = 2; // Assume the first day of the month is a Wednesday (0 = Sunday)
   const weekArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-  console.log("Events: ", events.date);
+  console.log("Events dates: ", events);
 
   const calendarDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
@@ -200,16 +200,18 @@ const EventCalendar = () => {
   const [filters, setFilters] = useState({})
   const [events, setEvents] = useState([])
 
-  const fetchEvents = async () => {
-    try {
-      const res = await getEvents(filters)
-      setEvents(res)
-    } catch (error) {
-      console.log("Error getting events: ", error);
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await getEvents(filters)
+        console.log("In EventCalendar events: ", events);
+        setEvents(res)
+      } catch (error) {
+        console.log("Error getting events: ", error);
+      }
     }
-
     fetchEvents()
-  }
+  }, [])
 
 
   return (
