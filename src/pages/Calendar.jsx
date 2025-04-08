@@ -108,10 +108,11 @@ const CalendarGrid = ({ events }) => {
   console.log("Current date: ", currentDate)
   console.log("Current month: ", currentMonth)
   console.log("Current year: ", currentYear)
+  
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 1);
 
-
+  console.log("daysInMonth: ", daysInMonth);
   // Generate a mock calendar for the current month (e.g., April 2025)
-  const daysInMonth = 30; 
   const firstDayOfMonth = 2; 
   const weekArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
   console.log("Events dates: ", events);
