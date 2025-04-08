@@ -153,12 +153,12 @@ const CalendarGrid = ({ events }) => {
 
 
 const ShowEvents = ({ filters }) => {
-  const [ event, setEvents ] = useState([])
+  const [ event, setEvents ] = useState([]);
 
   useEffect(() => {
       const fetchEvents = async () => {
           const events = await getEvents(filters);
-          setEvents(events)
+          setEvents(events);
         }
         fetchEvents()
   }, [filters])
