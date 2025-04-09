@@ -117,11 +117,13 @@ const CalendarGrid = ({ events }) => {
   console.log("Days in month: ", daysInMonth);
   console.log("first day in the month: ", firstDayOfMonth);
 
-  const filteredEvents = (events) => {
-    events.map((event) => {
-      if(event.getMonth() == currentMonth)
-      console.log("Filtered Event: ", event);
-    })
+  const filteredEvents = events.filter((event) => {
+    const eventDate = new Date(event.date)
+
+    return (
+      console.log(eventDate)
+    )
+  })
   }
 
   filteredEvents();
