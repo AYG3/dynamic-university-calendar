@@ -132,8 +132,19 @@ const CalendarGrid = ({ events }) => {
     console.log("filteredEvents: ", filteredEvents);
     filterEvents()
 
-  }, [filteredEvents, currentMonth, currentMonth])
+  }, [ events, currentMonth, currentMonth])
 
+  const handleNextMonth = () => {
+    setCurrentDate(
+      new Date(currentYear, currentMonth + 1, 1)
+    )
+  }
+
+  const handlePreviousMonth = () => {
+    setCurrentDate(
+      new Date(currentYear, currentMonth - 1, 1)
+    )
+  }
 
 
   // Generate a mock calendar for the current month (e.g., April 2025)
