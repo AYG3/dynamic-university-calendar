@@ -99,7 +99,7 @@ const FilterSection = ({ filters, setFilters }) => {
   );
 };
 
-const CalendarGrid = ({ events }) => {
+const CalendarGrid = ({ events, filters }) => {
   const [ currentDate, setCurrentDate ] = useState(new Date());
   const [filteredEvents, setFilteredEvents] = useState([events]);
 
@@ -113,15 +113,25 @@ const CalendarGrid = ({ events }) => {
   useEffect(() => {
     const filterEvents = () => {
 
-       setFilteredEvents(
-         events.filter((event) => {
+       
+
+        const filtered = events.filter((event) => {
          const eventDate = new Date(event.date);
+
+         const matchesCategory = filters.category === "Category" || filters.category === event.category
+         const matchesDepartment = filters.department === "Departments" || filters.department === event.department
+         const matchesDateRange = (!filters.startDate || eventDate>= new Date(filters.startDate)) && (!filters.endDate || eventDate <= new Date(filters.endDate))
+         const matchesMonth = eventDate.getMonth() == currentMonth && eventDate.getFullYear() == currentYear
          
          return (
-           eventDate.getMonth() == currentMonth && eventDate.getFullYear() == currentYear
+          matchesCategory &&
+          matchesDepartment&&
+          matchesDateRange &&
+          matchesMonth
          )
        })
-       )
+       
+       setFilteredEvents(filtered);
     }
 
     console.log("filteredEvents: ", filteredEvents);
