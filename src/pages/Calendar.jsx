@@ -118,6 +118,9 @@ const CalendarGrid = ({ events }) => {
   console.log("first day in the month: ", firstDayOfMonth);
 
   console.log("events: ", events);
+  events.map((event) => {
+    console.log("event: ", event.date);
+  })
 
   const filteredEvents = events.filter((event) => {
     const eventDate = new Date(event.date);
@@ -129,8 +132,6 @@ const CalendarGrid = ({ events }) => {
 
   console.log("filteredEvents: ", filteredEvents);
 
-
-  console.log("daysInMonth: ", daysInMonth);
 
   // Generate a mock calendar for the current month (e.g., April 2025)
   const weekArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
