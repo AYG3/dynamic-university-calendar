@@ -127,6 +127,8 @@ const CalendarGrid = ({ events }) => {
     )
   })
 
+  console.log("filteredEvents: ", filteredEvents);
+
 
   console.log("daysInMonth: ", daysInMonth);
 
