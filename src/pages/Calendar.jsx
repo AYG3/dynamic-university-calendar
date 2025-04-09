@@ -156,7 +156,10 @@ const CalendarGrid = ({ events }) => {
   return (
     <div className="relative">
       <div className="text-black">
-        Month: {currentMonth.getMonth()}
+        Month: {currentDate.toLocaleString("default", { month: "long" })}
+      </div>
+      <div className="text-black">
+        Year: {currentYear}
       </div>
         {/* Month Navigation */}
         <div className="flex justify-between items-center mb-4">
@@ -195,7 +198,6 @@ const CalendarGrid = ({ events }) => {
         {/* Calendar Days */}
         {calendarDays.map((day) => {
           // Check if there are events on this day
-          <h3>Calendar days</h3>
           const dayEvents = events.filter(
             (event) => new Date(event.date).getDate() === day
           );
@@ -220,7 +222,6 @@ const CalendarGrid = ({ events }) => {
         })}
       </div>
     </div>
-
   );
 };
 
