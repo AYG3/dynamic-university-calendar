@@ -119,18 +119,17 @@ const CalendarGrid = ({ events }) => {
 
   console.log("events: ", events);
 
-    const filteredEvents = events.filter((event) => {
-      const eventDate = new Date(event.date);
-      
-      return (
-        console.log("eventDate: ", eventDate)
-      )
-    })
+  const filteredEvents = events.filter((event) => {
+    const eventDate = new Date(event.date);
+    
+    return (
+      eventDate.getMonth == currentMonth && eventDate.getFullYear == currentYear
+    )
+  })
 
-    filteredEvents();
 
   console.log("daysInMonth: ", daysInMonth);
-  
+
   // Generate a mock calendar for the current month (e.g., April 2025)
   const weekArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
@@ -151,7 +150,7 @@ const CalendarGrid = ({ events }) => {
       ))}
 
       {/* Calendar Days */}
-      {calendarDays.map((day) => {
+      {filteredEvents.map((day) => {
         // Check if there are events on this day
         const dayEvents = events.filter(
           (event) => new Date(event.date).getDate() === day
