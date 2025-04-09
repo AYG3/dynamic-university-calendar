@@ -155,15 +155,9 @@ const CalendarGrid = ({ events }) => {
 
   return (
     <div className="relative">
-      <div className="text-black">
-        Month: {currentDate.toLocaleString("default", { month: "long" })}
-      </div>
-      <div className="text-black">
-        Year: {currentYear}
-      </div>
         {/* Month Navigation */}
-        <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-bold">
+        <div className="flex justify-between items-center mb-4 w-full">
+        <h2 className="text-lg font-bold text-gray-800">
           {currentDate.toLocaleString("default", { month: "long" })} {currentYear}
         </h2>
         <div className="flex space-x-2">
