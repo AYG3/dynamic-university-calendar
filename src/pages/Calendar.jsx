@@ -108,6 +108,7 @@ const CalendarGrid = ({ events }) => {
   console.log("Current date: ", currentDate)
   console.log("Current month: ", currentMonth)
   console.log("Current year: ", currentYear)
+  console.log("Events: ", events)
   
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
@@ -124,12 +125,12 @@ const CalendarGrid = ({ events }) => {
   }
 
   filteredEvents();
-  
+
   console.log("daysInMonth: ", daysInMonth);
   // Generate a mock calendar for the current month (e.g., April 2025)
   const weekArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
-  // const calendarDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+  const calendarDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
   return (
     <div className="grid grid-cols-7 gap-2 text-center mb-6 text-black">
