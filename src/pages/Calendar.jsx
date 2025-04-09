@@ -105,6 +105,8 @@ const CalendarGrid = ({ events, filters }) => {
 
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
+
+  console.log("events: ", events);
   
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
@@ -119,7 +121,7 @@ const CalendarGrid = ({ events, filters }) => {
          const eventDate = new Date(event.date);
 
          const matchesCategory = filters.category === "Category" || filters.category === event.category
-         const matchesDepartment = filters.department === "Departments" || filters.department === event.department
+         const matchesDepartment = filters.department === "Department" || filters.department === event.department
          const matchesDateRange = (!filters.startDate || eventDate>= new Date(filters.startDate)) && (!filters.endDate || eventDate <= new Date(filters.endDate))
          const matchesMonth = eventDate.getMonth() == currentMonth && eventDate.getFullYear() == currentYear
          
