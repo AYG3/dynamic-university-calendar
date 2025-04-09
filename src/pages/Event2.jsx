@@ -149,7 +149,8 @@ const AddEvent = () => {
   const [event, setEvent] = useState({
     title: "",
     category: "",
-    department: ""
+    department: "",
+    date:""
   });
 
   const handleInputChange = (e) => {
@@ -184,7 +185,9 @@ const AddEvent = () => {
         title: "",
         category: "",
         department: "",
+        date: "",
         description: ""
+
       })
     } catch (error) {
       console.log("Error creating event: ", error);
