@@ -117,6 +117,8 @@ const CalendarGrid = ({ events }) => {
   console.log("Days in month: ", daysInMonth);
   console.log("first day in the month: ", firstDayOfMonth);
 
+  console.log("events: ", events);
+
     const filteredEvents = events.filter((event) => {
       const eventDate = new Date(event.date);
   
