@@ -101,7 +101,7 @@ const FilterSection = ({ filters, setFilters }) => {
 
 const CalendarGrid = ({ events }) => {
   const [ currentDate, setCurrentDate ] = useState(new Date());
-  
+
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
 
@@ -147,7 +147,7 @@ const CalendarGrid = ({ events }) => {
       ))}
 
       {/* Calendar Days */}
-      {filteredEvents.map((day) => {
+      {calendarDays.map((day) => {
         // Check if there are events on this day
         const dayEvents = events.filter(
           (event) => new Date(event.date).getDate() === day
