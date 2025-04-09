@@ -105,21 +105,15 @@ const CalendarGrid = ({ events }) => {
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
 
-  console.log("Current date: ", currentDate)
-  console.log("Current month: ", currentMonth)
-  console.log("Current year: ", currentYear)
   console.log("Events: ", events)
   
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
   const firstDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDay()
-  
-  console.log("Days in month: ", daysInMonth);
-  console.log("first day in the month: ", firstDayOfMonth);
 
   console.log("events: ", events);
   events.map((event) => {
-    console.log("event: ", event.date);
+    console.log("event date: ", event.date);
   })
 
   const filteredEvents = events.filter((event) => {
