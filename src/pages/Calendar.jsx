@@ -112,19 +112,24 @@ const CalendarGrid = ({ events }) => {
   const firstDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDay()
 
   console.log("events: ", events);
-  events.map((event) => {
-    console.log("event date: ", event.date);
-  })
-
-  const filteredEvents = events.filter((event) => {
-    const eventDate = new Date(event.date);
     
-    return (
-      eventDate.getMonth() == currentMonth && eventDate.getFullYear() == currentYear
-    )
-  })
+  useEffect(() => {
+    const filterEvents = () => {
 
-  console.log("filteredEvents: ", filteredEvents);
+      const filteredEvents = events.filter((event) => {
+        const eventDate = new Date(event.date);
+        
+        return (
+          eventDate.getMonth() == currentMonth && eventDate.getFullYear() == currentYear
+        )
+      })
+    }
+
+    console.log("filteredEvents: ", filteredEvents);
+    filterEvents()
+
+  }, [filteredEvents, currentMonth, currentMonth])
+
 
 
   // Generate a mock calendar for the current month (e.g., April 2025)
