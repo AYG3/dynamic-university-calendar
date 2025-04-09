@@ -221,20 +221,20 @@ const ShowEvents = ({ filters }) => {
 }
 
 const EventCalendar = () => {
-  const [filters, setFilters] = useState({})
-  const [events, setEvents] = useState([])
+  const [filters, setFilters] = useState({});
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         const res = await getEvents(filters)
         console.log("In EventCalendar events: ", events);
-        setEvents(res)
+        setEvents(res);
       } catch (error) {
         console.log("Error getting events: ", error);
       }
     }
-    fetchEvents()
+    fetchEvents();
   }, [])
 
 
