@@ -105,6 +105,8 @@ const CalendarGrid = ({ events, filters }) => {
 
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
+
+  console.log("events: ", events);
   
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
@@ -119,7 +121,7 @@ const CalendarGrid = ({ events, filters }) => {
          const eventDate = new Date(event.date);
 
          const matchesCategory = filters.category === "Category" || filters.category === event.category
-         const matchesDepartment = filters.department === "Departments" || filters.department === event.department
+         const matchesDepartment = filters.department === "Department" || filters.department === event.department
          const matchesDateRange = (!filters.startDate || eventDate>= new Date(filters.startDate)) && (!filters.endDate || eventDate <= new Date(filters.endDate))
          const matchesMonth = eventDate.getMonth() == currentMonth && eventDate.getFullYear() == currentYear
          
@@ -137,7 +139,7 @@ const CalendarGrid = ({ events, filters }) => {
     console.log("filteredEvents: ", filteredEvents);
     filterEvents()
 
-  }, [events, currentMonth, currentMonth])
+  }, [events, filters, currentMonth, currentMonth])
 
   const handleNextMonth = () => {
     setCurrentDate(
@@ -159,8 +161,8 @@ const CalendarGrid = ({ events, filters }) => {
 
   return (
     <div className="relative">
-        {/* Month Navigation */}
-        <div className="flex justify-between items-center mb-4 w-full">
+      {/* Month Navigation */}
+      <div className="flex justify-between items-center mb-4 w-full">
         <h2 className="text-lg font-bold text-gray-800">
           {currentDate.toLocaleString("default", { month: "long" })} {currentYear}
         </h2>
@@ -180,7 +182,6 @@ const CalendarGrid = ({ events, filters }) => {
         </div>
       </div>
       <div className="grid grid-cols-7 gap-2 text-center mb-6 text-black">
-        
         {/* Weekday Headers */}
         {weekArr.map((day) => (
           <div key={day} className="font-bold">
@@ -203,15 +204,21 @@ const CalendarGrid = ({ events, filters }) => {
           return (
             <div
               key={day}
-              className={`p-2 border border-black rounded-lg ${
-                dayEvents.length > 0 ? "bg-blue-400 text-white" : ""
+              className={`p-2 border border-gray-300 rounded-lg ${
+                dayEvents.length > 0 ? "bg-blue-100 text-gray-800" : ""
               }`}
             >
-              {day}
+              <div className="font-bold">{day}</div>
               {dayEvents.length > 0 && (
-                <div className="text-xs mt-1">
+                <div className="mt-1 space-y-1">
                   {dayEvents.map((event) => (
-                    <p key={event._id}>{event.title}</p>
+                    <div
+                      key={event._id}
+                      className="bg-blue-500 text-white text-xs rounded-md px-1 py-0.5 truncate hover:overflow-visible hover:whitespace-normal hover:bg-blue-600"
+                      title={event.title}
+                    >
+                      {event.title}
+                    </div>
                   ))}
                 </div>
               )}
