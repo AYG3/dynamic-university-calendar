@@ -101,8 +101,7 @@ const FilterSection = ({ filters, setFilters }) => {
 
 const CalendarGrid = ({ events }) => {
   const [ currentDate, setCurrentDate ] = useState(new Date());
-  const [filteredEvents, setFilteredEvents] = useState([]);
-  const [  ] = useState()
+  const [filteredEvents, setFilteredEvents] = useState([events]);
 
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
@@ -133,7 +132,7 @@ const CalendarGrid = ({ events }) => {
     console.log("filteredEvents: ", filteredEvents);
     filterEvents()
 
-  }, [ events, currentMonth, currentMonth])
+  }, [events, currentMonth, currentMonth])
 
   const handleNextMonth = () => {
     setCurrentDate(
@@ -192,7 +191,7 @@ const CalendarGrid = ({ events }) => {
         {/* Calendar Days */}
         {calendarDays.map((day) => {
           // Check if there are events on this day
-          const dayEvents = events.filter(
+          const dayEvents = filteredEvents.filter(
             (event) => new Date(event.date).getDate() === day
           );
 
