@@ -248,6 +248,11 @@ const AddEvent = () => {
             <option value="Business">Business</option>
           </select>
         </div>
+        {/* DATE */}
+        <div>
+          <label className="">Date</label>
+          <input type="date" name="date" className="p-2 border rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+        </div>
         {/* DESCRIPTION */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
