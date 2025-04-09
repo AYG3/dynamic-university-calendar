@@ -101,7 +101,8 @@ const FilterSection = ({ filters, setFilters }) => {
 
 const CalendarGrid = ({ events }) => {
   const [ currentDate, setCurrentDate ] = useState(new Date());
-  const [filteredEvents, setFilteredEvents] = useState([])
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [  ] = useState()
 
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
@@ -154,6 +155,9 @@ const CalendarGrid = ({ events }) => {
 
   return (
     <div className="relative">
+      <div className="text-black">
+        Month: {currentMonth.getMonth()}
+      </div>
         {/* Month Navigation */}
         <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-bold">
