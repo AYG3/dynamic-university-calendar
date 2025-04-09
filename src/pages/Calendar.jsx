@@ -120,7 +120,7 @@ const CalendarGrid = ({ events }) => {
     const eventDate = new Date(event.date);
     
     return (
-      eventDate.getMonth == currentMonth && eventDate.getFullYear == currentYear
+      eventDate.getMonth() == currentMonth && eventDate.getFullYear() == currentYear
     )
   })
 
