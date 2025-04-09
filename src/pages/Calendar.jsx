@@ -105,15 +105,10 @@ const CalendarGrid = ({ events }) => {
 
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
-
-  console.log("Events: ", events)
   
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-  const firstDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDay()
-
-  console.log("events: ", events);
-  
+  const firstDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDay()  
 
   useEffect(() => {
     const filterEvents = () => {
