@@ -153,45 +153,68 @@ const CalendarGrid = ({ events }) => {
   const calendarDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
   return (
-    <div className="grid grid-cols-7 gap-2 text-center mb-6 text-black">
-      {/* Weekday Headers */}
-      {weekArr.map((day) => (
-        <div key={day} className="font-bold">
-          {day}
-        </div>
-      ))}
-
-      {/* Empty cells for days before the first day of the month */}
-      {Array.from({ length: firstDayOfMonth }).map((_, i) => (
-        <div key={`empty-${i}`} className="p-2"></div>
-      ))}
-
-      {/* Calendar Days */}
-      {calendarDays.map((day) => {
-        // Check if there are events on this day
-        const dayEvents = events.filter(
-          (event) => new Date(event.date).getDate() === day
-        );
-
-        return (
-          <div
-            key={day}
-            className={`p-2 border border-black rounded-lg ${
-              dayEvents.length > 0 ? "bg-blue-400 text-white" : ""
-            }`}
+    <div className="relative">
+            {/* Month Navigation */}
+            <div className="flex justify-between items-center mb-4">
+        <h2 className="text-lg font-bold">
+          {currentDate.toLocaleString("default", { month: "long" })} {currentYear}
+        </h2>
+        <div className="flex space-x-2">
+          <button
+            onClick={handlePreviousMonth}
+            className="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
           >
+            Previous
+          </button>
+          <button
+            onClick={handleNextMonth}
+            className="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+      <div className="grid grid-cols-7 gap-2 text-center mb-6 text-black">
+        {/* Weekday Headers */}
+        {weekArr.map((day) => (
+          <div key={day} className="font-bold">
             {day}
-            {dayEvents.length > 0 && (
-              <div className="text-xs mt-1">
-                {dayEvents.map((event) => (
-                  <p key={event._id}>{event.title}</p>
-                ))}
-              </div>
-            )}
           </div>
-        );
-      })}
+        ))}
+
+        {/* Empty cells for days before the first day of the month */}
+        {Array.from({ length: firstDayOfMonth }).map((_, i) => (
+          <div key={`empty-${i}`} className="p-2"></div>
+        ))}
+
+        {/* Calendar Days */}
+        {calendarDays.map((day) => {
+          // Check if there are events on this day
+          const dayEvents = events.filter(
+            (event) => new Date(event.date).getDate() === day
+          );
+
+          return (
+            <div
+              key={day}
+              className={`p-2 border border-black rounded-lg ${
+                dayEvents.length > 0 ? "bg-blue-400 text-white" : ""
+              }`}
+            >
+              {day}
+              {dayEvents.length > 0 && (
+                <div className="text-xs mt-1">
+                  {dayEvents.map((event) => (
+                    <p key={event._id}>{event.title}</p>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
+
   );
 };
 
