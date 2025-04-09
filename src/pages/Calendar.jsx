@@ -154,8 +154,8 @@ const CalendarGrid = ({ events }) => {
 
   return (
     <div className="relative">
-            {/* Month Navigation */}
-            <div className="flex justify-between items-center mb-4">
+        {/* Month Navigation */}
+        <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-bold">
           {currentDate.toLocaleString("default", { month: "long" })} {currentYear}
         </h2>
@@ -175,6 +175,7 @@ const CalendarGrid = ({ events }) => {
         </div>
       </div>
       <div className="grid grid-cols-7 gap-2 text-center mb-6 text-black">
+        
         {/* Weekday Headers */}
         {weekArr.map((day) => (
           <div key={day} className="font-bold">
@@ -190,6 +191,7 @@ const CalendarGrid = ({ events }) => {
         {/* Calendar Days */}
         {calendarDays.map((day) => {
           // Check if there are events on this day
+          <h3>Calendar days</h3>
           const dayEvents = events.filter(
             (event) => new Date(event.date).getDate() === day
           );
