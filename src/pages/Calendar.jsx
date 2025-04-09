@@ -214,7 +214,7 @@ const CalendarGrid = ({ events, filters }) => {
                   {dayEvents.map((event) => (
                     <div
                       key={event._id}
-                      className="bg-blue-500 text-white text-xs rounded-md px-1 py-0.5 truncate hover:overflow-visible hover:whitespace-normal hover:bg-blue-600"
+                      className="bg-blue-300 text-black text-xs rounded-md px-1 py-0.5 truncate hover:overflow-visible hover:whitespace-normal hover:bg-blue-400"
                       title={event.title}
                     >
                       {event.title}
