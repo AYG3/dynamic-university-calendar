@@ -283,7 +283,7 @@ const EventCalendar = () => {
           University Event Calendar
         </h1>
         <FilterSection setFilters={setFilters} filters={filters} />
-        <CalendarGrid events={events} />
+        <CalendarGrid events={events} filters={filters}/>
         <ShowEvents filters={filters} />
       </div>
     </div>
