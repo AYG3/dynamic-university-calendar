@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getEvents } from "../services/api";
+import { deleteEvent, getEvents } from "../services/api";
 
 const FilterSection = ({ filters, setFilters }) => {
   const handleFilterChange = (e) => {
@@ -242,6 +242,17 @@ const ShowEvents = ({ filters }) => {
         fetchEvents()
   }, [filters])
 
+   const handleDelete = async (id) => {
+
+      try {
+        const response = await deleteEvent(id)
+        console.log("delete response: ", response);
+        setEvents((prevEvents) => prevEvents.filter((event) => event._id !== id));
+      } catch (error) {
+        console.log("delete event error: ", error);
+      }
+    }
+
   return (
       <div className="text-black mt-6 w-full">
           <h1 className="text-2xl font-bold mb-4 text-center">Show Events</h1>
@@ -265,6 +276,7 @@ const ShowEvents = ({ filters }) => {
                           <p className="text-sm text-gray-600">
                               <span className="font-medium">Description:</span> {event.description}
                           </p>
+                          <button onClick={() => handleDelete(event._id)} className="text-white bg-white border-4 hover:border-white rounded-2xl "> Delete</button>
                       </div>
                   ))}
               </div>

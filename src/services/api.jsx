@@ -31,8 +31,6 @@ export const createEvent = async (eventData) => {
 
 export const deleteEvent = async (eventId) => {
     try {
-        const query = new URLSearchParams(API_URL + "/" + eventId)
-        console.log("query: ", query);
         const response = await axios.delete(API_URL + "/" + eventId)
         console.log("Delete respponse data: ", response.data)
         return response.data
