@@ -101,8 +101,8 @@ const FilterSection = ({ filters, setFilters }) => {
   );
 };
 
-const ShowEvents = ({ filters }) => {
-    const [ event, setEvents ] = useState([])
+const ShowEvents = ({events, setEvents, filters }) => {
+    
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -125,9 +125,9 @@ const ShowEvents = ({ filters }) => {
     return (
         <div className="text-black mt-6 w-full">
             <h1 className="text-2xl font-bold mb-4 text-center">Show Events</h1>
-            {event.length > 0 ? (
+            {events.length > 0 ? (
                 <div className="flex flex-col w-full">
-                    {event.map((event) => (
+                    {events.map((event) => (
                         <div
                             key={event._id}
                             className="bg-white shadow-md rounded-lg p-4 border border-gray-200 w-full"
@@ -157,7 +157,8 @@ const ShowEvents = ({ filters }) => {
     );
 }
 
-const AddEvent = () => {
+const AddEvent = ({ setEvents }) => {
+  
   const [event, setEvent] = useState({
     title: "",
     category: "",
@@ -182,26 +183,19 @@ const AddEvent = () => {
       const response = await createEvent(event);
       const res = response.data
       console.log("Response: ", res);
-      console.log("Response data: ", response.data.data);
-
-      if(response.data.status == 200){
-        console.log("Sucessful console.log response status")
-        notify()
-      }
-      else{
-        console.log(response.status)
-      }
-    
+      console.log("Response data: ", response.data.data); 
 
       console.log("Create event, event: ", response);
+      setEvents([...prev, event])
+      
       setEvent({
         title: "",
         category: "",
         department: "",
         date: "",
         description: ""
-
       })
+
     } catch (error) {
       console.log("Error creating event: ", error);
     }
@@ -294,12 +288,12 @@ const AddEvent = () => {
 
 const Event2 = () => {
     const [filters, setFilters] = useState({});
-
+    const [ events, setEvents ] = useState([])
     return (
         <div className="bg-white min-h-screen min-w-screen flex flex-col mx-auto overflow-hidden">
             <FilterSection filters={filters} setFilters={setFilters}/>
-            <ShowEvents filters={filters} />
-            <AddEvent />
+            <ShowEvents filters={filters} events={events} setEvents={setEvents} />
+            <AddEvent setEvents={setEvents} />
             <Toaster />
         </div>
     )
