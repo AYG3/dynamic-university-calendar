@@ -192,6 +192,8 @@ const AddEvent = () => {
         console.log(response.status)
       }
 
+      setEvent()
+
       console.log("Create event, event: ", response);
       setEvent({
         title: "",
