@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createEvent, getEvents } from "../services/api";
+import { createEvent, deleteEvent, getEvents } from "../services/api";
 
 import toast, { Toaster } from "react-hot-toast";
 
@@ -112,10 +112,15 @@ const ShowEvents = ({ filters }) => {
           fetchEvents()
     }, [filters])
 
-    const handleDelete = (e) => {
-      const { name } = e.target;
+    const handleDelete = async (e) => {
+      const { name, id } = e.target;
 
-      
+      try {
+        const response = await deleteEvent(id)
+        console.log("delete response: ", response);
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     return (

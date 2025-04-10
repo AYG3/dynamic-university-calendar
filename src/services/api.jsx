@@ -32,6 +32,7 @@ export const createEvent = async (eventData) => {
 export const deleteEvent = async (eventId) => {
     try {
         const response = await axios.delete(API_URL + "/" + eventId)
+        return response.data
     } catch (error) {
         console.log("Error deleting event: ", error)
     }
