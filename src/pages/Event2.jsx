@@ -191,10 +191,7 @@ const AddEvent = () => {
       else{
         console.log(response.status)
       }
-
-      setEvents((prev) => {
-        
-      })
+    
 
       console.log("Create event, event: ", response);
       setEvent({
