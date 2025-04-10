@@ -28,3 +28,11 @@ export const createEvent = async (eventData) => {
         return null
     }
 }
+
+export const deleteEvent = async (eventId) => {
+    try {
+        const response = await axios.delete(API_URL + "/" + eventId)
+    } catch (error) {
+        console.log("Error deleting event: ", error)
+    }
+}

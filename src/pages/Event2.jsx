@@ -112,6 +112,12 @@ const ShowEvents = ({ filters }) => {
           fetchEvents()
     }, [filters])
 
+    const handleDelete = (e) => {
+      const { name } = e.target;
+
+      
+    }
+
     return (
         <div className="text-black mt-6 w-full">
             <h1 className="text-2xl font-bold mb-4 text-center">Show Events</h1>
