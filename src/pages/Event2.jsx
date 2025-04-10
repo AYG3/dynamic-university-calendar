@@ -112,14 +112,13 @@ const ShowEvents = ({ filters }) => {
           fetchEvents()
     }, [filters])
 
-    const handleDelete = async (e) => {
-      const { name, id } = e.target;
+    const handleDelete = async (id) => {
 
       try {
         const response = await deleteEvent(id)
         console.log("delete response: ", response);
       } catch (error) {
-        console.log(error);
+        console.log("delete event error: ", error);
       }
     }
 
@@ -146,7 +145,9 @@ const ShowEvents = ({ filters }) => {
                             <p className="text-sm text-gray-600">
                                 <span className="font-medium">Description:</span> {event.description}
                             </p>
+                              <button onClick={() => handleDelete(event._id)} className="text-white bg-white border rounded-2xl "> Delete</button>
                         </div>
+                        
                     ))}
                 </div>
             ) : (
