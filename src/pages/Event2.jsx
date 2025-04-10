@@ -183,11 +183,10 @@ const AddEvent = ({ setEvents }) => {
       const response = await createEvent(event);
       const res = response.data
       console.log("Response: ", res);
-      console.log("Response data: ", response.data.data); 
 
       console.log("Create event, event: ", response);
-      setEvents([...prev, event])
-      
+      setEvents((prev) => [...prev, event])
+
       setEvent({
         title: "",
         category: "",

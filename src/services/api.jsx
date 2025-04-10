@@ -20,8 +20,8 @@ export const getEvents = async ( filters = {} ) => {
 export const createEvent = async (eventData) => {
     try {
         const response = await axios.post(API_URL, eventData)
-        console.log(response.data)
-        console.log("Response status: ",response.status)
+        // console.log(response.data)
+        // console.log("Response status: ",response.status)
         return response.data
     } catch (error) {
         console.log("Error creating event", error)
