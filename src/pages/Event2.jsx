@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { createEvent, deleteEvent, getEvents } from "../services/api";
 
-import toast, { Toaster } from "react-hot-toast";
-
 const FilterSection = ({ filters, setFilters }) => {
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -175,7 +173,6 @@ const AddEvent = ({ setEvents }) => {
     }));
   };
 
-  const notify = () => toast("Successfully Added Event")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
