@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { createEvent, deleteEvent, getEvents } from "../services/api";
+import { toast, Toaster } from "sonner";
 
 const FilterSection = ({ filters, setFilters }) => {
   const handleFilterChange = (e) => {
@@ -22,7 +23,7 @@ const FilterSection = ({ filters, setFilters }) => {
   }, [setFilters]);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 mb-8 w-full text-gray-800">
+    <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 mb-8 w-full text-gray-800 mt-12">
       {/* CATEGORY */}
       <div className="flex flex-col">
         <label htmlFor="category" className="text-sm font-medium text-gray-700 mb-1">
@@ -121,37 +122,41 @@ const ShowEvents = ({events, setEvents, filters }) => {
     }
 
     return (
-        <div className="text-black mt-6 w-full">
-            <h1 className="text-2xl font-bold mb-4 text-center">Show Events</h1>
-            {events.length > 0 ? (
-                <div className="flex flex-col w-full">
-                    {events.map((event) => (
-                        <div
-                            key={event._id}
-                            className="bg-white shadow-md rounded-lg p-4 border border-gray-200 w-full"
-                        >
-                            <h2 className="text-lg font-semibold mb-2">{event.title}</h2>
-                            <p className="text-sm text-gray-600 mb-1">
-                                <span className="font-medium">Department:</span> {event.department}
-                            </p>
-                            <p className="text-sm text-gray-600 mb-1">
-                                <span className="font-medium">Category:</span> {event.category}
-                            </p>
-                            <p className="text-sm text-gray-600 mb-1">
-                                <span className="font-medium">Date:</span> {new Date(event.date).toLocaleDateString()}
-                            </p>
-                            <p className="text-sm text-gray-600">
-                                <span className="font-medium">Description:</span> {event.description}
-                            </p>
-                              <button onClick={() => handleDelete(event._id)} className="text-white bg-white border rounded-2xl "> Delete</button>
-                        </div>
-                        
-                    ))}
-                </div>
-            ) : (
-                <p className="text-gray-500 text-center">No Events Available</p>
-            )}
+      <div className="flex items-center align-middle text-black mt-6 w-full max-w-4/6">
+      <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">Show Events</h1>
+      {events.length > 0 ? (
+        <div className="flex flex-col space-y-4 w-full">
+        {events.map((event) => (
+          <div
+          key={event._id}
+          className="bg-white shadow-lg rounded-lg p-6 border border-gray-300 hover:shadow-xl transition-shadow duration-300"
+          >
+          <h2 className="text-xl font-semibold mb-2 text-gray-800">{event.title}</h2>
+          <p className="text-sm text-gray-700 mb-1">
+            <span className="font-medium">Department:</span> {event.department}
+          </p>
+          <p className="text-sm text-gray-700 mb-1">
+            <span className="font-medium">Category:</span> {event.category}
+          </p>
+          <p className="text-sm text-gray-700 mb-1">
+            <span className="font-medium">Date:</span> {new Date(event.date).toLocaleDateString()}
+          </p>
+          <p className="text-sm text-gray-700">
+            <span className="font-medium">Description:</span> {event.description}
+          </p>
+          <button
+            onClick={() => handleDelete(event._id)}
+            className="mt-4 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition-colors duration-300"
+          >
+            Delete
+          </button>
+          </div>
+        ))}
         </div>
+      ) : (
+        <p className="text-gray-500 text-center">No Events Available</p>
+      )}
+      </div>
     );
 }
 
@@ -275,6 +280,7 @@ const AddEvent = ({ setEvents }) => {
         <button
           type="submit"
           className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 w-full"
+          onClick={() => toast("Event added")}
         >
           Add Event
         </button>
@@ -288,10 +294,11 @@ const Event2 = () => {
     const [ events, setEvents ] = useState([])
     return (
         <div className="bg-white min-h-screen min-w-screen flex flex-col mx-auto overflow-hidden">
+            <Toaster />
             <FilterSection filters={filters} setFilters={setFilters}/>
             <ShowEvents filters={filters} events={events} setEvents={setEvents} />
             <AddEvent setEvents={setEvents} />
-            <Toaster />
+
         </div>
     )
 }
