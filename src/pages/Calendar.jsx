@@ -306,7 +306,7 @@ const EventCalendar = () => {
 
 
   return (
-    <div className="bg-gray-100 container p-4 sm:p-6 min-h-screen min-w-screen flex justify-center items-start ">
+    <div className="mt-12 bg-gray-100 container p-4 sm:p-6 min-h-screen min-w-screen flex justify-center items-start ">
       <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg p-4 sm:p-6">
         <h1 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 text-center">
           University Event Calendar

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
     return (
-        <nav className="bg-gray-200 w-full p-4 shadow-md">
+        <nav className="fixed bg-gray-200 w-full p-4 shadow-md z-50">
             <div className="flex items-center justify-between w-full max-w-6xl mx-auto">
                 <Link 
                     to='/calendar' 
