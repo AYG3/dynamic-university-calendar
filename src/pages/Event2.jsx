@@ -122,7 +122,7 @@ const ShowEvents = ({events, setEvents, filters }) => {
     }
 
     return (
-      <div className="flex items-center align-middle text-black mt-6 w-full max-w-4/6">
+      <div className="flex flex-col align-middle items-center text-black mt-6 w-full max-w-4/5 mx-auto">
       <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">Show Events</h1>
       {events.length > 0 ? (
         <div className="flex flex-col space-y-4 w-full">
