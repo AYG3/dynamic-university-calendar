@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { deleteEvent, getEvents } from "../services/api";
+import { toast, Toaster } from "sonner";
 
 const FilterSection = ({ filters, setFilters }) => {
   const handleFilterChange = (e) => {
@@ -248,6 +249,7 @@ const ShowEvents = ({ filters }) => {
         const response = await deleteEvent(id)
         console.log("delete response: ", response);
         setEvents((prevEvents) => prevEvents.filter((event) => event._id !== id));
+        toast.message("Event deleted")
       } catch (error) {
         console.log("delete event error: ", error);
       }
@@ -308,6 +310,7 @@ const EventCalendar = () => {
   return (
     <div className="mt-12 bg-gray-100 container p-4 sm:p-6 min-h-screen min-w-screen flex justify-center items-start ">
       <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg p-4 sm:p-6">
+        <Toaster />
         <h1 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 text-center">
           University Event Calendar
         </h1>
