@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { deleteEvent, getEvents, loading } from "../services/api";
+import { deleteEvent, getEvents } from "../services/api";
 import { toast, Toaster } from "sonner";
 
 const FilterSection = ({ filters, setFilters }) => {
