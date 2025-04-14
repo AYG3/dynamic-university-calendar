@@ -116,8 +116,7 @@ const CalendarGrid = ({ events, filters }) => {
   useEffect(() => {
     const filterEvents = () => {
 
-       
-
+    
         const filtered = events.filter((event) => {
          const eventDate = new Date(event.date);
 
@@ -239,7 +238,7 @@ const ShowEvents = ({ filters }) => {
       const fetchEvents = async () => {
         try {
           const events = await getEvents(filters);
-          setEvents(events);
+          setEvents(Array.isArray(events) ? events : []);
         } catch (error) {
           console.log("Error fetching errors");
           setEvents([]);
