@@ -248,9 +248,12 @@ const CalendarGrid = ({ events, filters }) => {
 
 const ShowEvents = ({ event, setEvent, filters }) => {
   // const [event, setEvent] = useState([]);
-
+  
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true)
     const fetchEvents = async () => {
+
       try {
         const events = await getEvents(filters);
         setEvent(Array.isArray(events) ? events : []);
@@ -258,8 +261,12 @@ const ShowEvents = ({ event, setEvent, filters }) => {
         console.log("Error fetching errors");
         setEvent([]);
       }
-    };
+      finally{
+        setLoading(false)
+
+      };
     fetchEvents();
+    }
   }, [filters]);
 
   const handleDelete = async (id) => {
@@ -280,6 +287,7 @@ const ShowEvents = ({ event, setEvent, filters }) => {
     )
   }
   return (
+
       <div className="text-black mt-6 w-full">
       <h1 className="text-2xl font-bold mb-4 text-center">Show Events</h1>
     {event.length > 0 ? (
