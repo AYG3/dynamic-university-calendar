@@ -237,8 +237,13 @@ const ShowEvents = ({ filters }) => {
 
   useEffect(() => {
       const fetchEvents = async () => {
+        try {
           const events = await getEvents(filters);
           setEvents(events);
+        } catch (error) {
+          console.log("Error fetching errors");
+          setEvents([]);
+          }
         }
         fetchEvents()
   }, [filters])
