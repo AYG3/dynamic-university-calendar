@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import EventCalendar from './pages/calendar.jsx'
+import EventCalendar from './pages/Calendar.jsx'
 import Navbar from './pages/Navbar.jsx';
 import Events from './pages/Events.jsx';
 import Event2 from './pages/Event2.jsx';
