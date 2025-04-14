@@ -1,10 +1,9 @@
 import axios from "axios";
 
-const API_URL = import.meta.env.LOCAL_VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const getEvents = async ( filters = {} ) => {
     try {
-        const query = new URLSearchParams(filters).toString()
         // console.log(API_URL + "?" + query)
         const response = await axios.get(API_URL, { params: filters })
         console.log("from API.jsx -  - -  response.data: ", response.data)
