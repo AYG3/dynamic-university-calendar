@@ -3,9 +3,10 @@ import { useState } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+
 export const useApi = () => {
     const [loading, setLoading] = useState(false)
-
+    
     const getEvents = async ( filters = {} ) => {
         
         setLoading(true)
