@@ -1,12 +1,48 @@
-# React + Vite
+# Dynamic University Calendar
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dynamic University Calendar is a web application designed to help universities and their students manage schedules, events, and academic calendars effectively. Built with a focus on simplicity and functionality, this project leverages modern web technologies to provide a seamless user experience.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Dynamic Scheduling**: Add, edit, and delete events on the go.
+- **Customizable Views**: View schedules by day, week, or month.
+- **Responsive Design**: Works on desktops, tablets, and mobile devices.
+- **User-Friendly Interface**: Simplifies academic calendar management for both administrators and students.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend**: JavaScript (95.8%), CSS (3.2%), HTML (1%)
+- **Backend**: [University Calendar (Node.js)](https://github.com/AYG3/university-calendar-nodejs)
+- **Libraries/Frameworks**: React
+
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/AYG3/dynamic-university-calendar.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd dynamic-university-calendar
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm start
+   ```
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgements
+
+- Special thanks to all contributors and supporters of this project.
