@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { deleteEvent, getEvents } from "../services/api";
+import { deleteEvent, getEvents, loading } from "../services/api";
 import { toast, Toaster } from "sonner";
 
 const FilterSection = ({ filters, setFilters }) => {
@@ -8,7 +8,7 @@ const FilterSection = ({ filters, setFilters }) => {
 
     setFilters((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -18,7 +18,7 @@ const FilterSection = ({ filters, setFilters }) => {
       department: "Department",
       description: "Description",
       startDate: "01/08/2005",
-      endDate: "06/12/2025"
+      endDate: "06/12/2025",
     });
   }, [setFilters]);
 
@@ -26,7 +26,10 @@ const FilterSection = ({ filters, setFilters }) => {
     <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 mb-8 w-full text-gray-800">
       {/* CATEGORY */}
       <div className="flex flex-col">
-        <label htmlFor="category" className="text-sm font-medium text-gray-700 mb-1">
+        <label
+          htmlFor="category"
+          className="text-sm font-medium text-gray-700 mb-1"
+        >
           Category
         </label>
         <select
@@ -47,7 +50,10 @@ const FilterSection = ({ filters, setFilters }) => {
 
       {/* DEPARTMENT */}
       <div className="flex flex-col">
-        <label htmlFor="department" className="text-sm font-medium text-gray-700 mb-1">
+        <label
+          htmlFor="department"
+          className="text-sm font-medium text-gray-700 mb-1"
+        >
           Department
         </label>
         <select
@@ -69,7 +75,10 @@ const FilterSection = ({ filters, setFilters }) => {
 
       {/* START DATE */}
       <div className="flex flex-col">
-        <label htmlFor="startDate" className="text-sm font-medium text-gray-700 mb-1">
+        <label
+          htmlFor="startDate"
+          className="text-sm font-medium text-gray-700 mb-1"
+        >
           Start Date
         </label>
         <input
@@ -84,7 +93,10 @@ const FilterSection = ({ filters, setFilters }) => {
 
       {/* END DATE */}
       <div className="flex flex-col">
-        <label htmlFor="endDate" className="text-sm font-medium text-gray-700 mb-1">
+        <label
+          htmlFor="endDate"
+          className="text-sm font-medium text-gray-700 mb-1"
+        >
           End Date
         </label>
         <input
@@ -100,62 +112,65 @@ const FilterSection = ({ filters, setFilters }) => {
   );
 };
 
+
+
 const CalendarGrid = ({ events, filters }) => {
-  const [ currentDate, setCurrentDate ] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState(new Date());
   const [filteredEvents, setFilteredEvents] = useState([events]);
 
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
 
   console.log("events: ", events);
-  
+
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-  const firstDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDay()  
+  const firstDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDay();
 
   useEffect(() => {
     const filterEvents = () => {
+      const filtered = events.filter((event) => {
+        const eventDate = new Date(event.date);
 
-    
-        const filtered = events.filter((event) => {
-         const eventDate = new Date(event.date);
+        const matchesCategory =
+          filters.category === "Category" ||
+          filters.category === event.category;
+        const matchesDepartment =
+          filters.department === "Department" ||
+          filters.department === event.department;
+        const matchesDateRange =
+          (!filters.startDate || eventDate >= new Date(filters.startDate)) &&
+          (!filters.endDate || eventDate <= new Date(filters.endDate));
+        const matchesMonth =
+          eventDate.getMonth() == currentMonth &&
+          eventDate.getFullYear() == currentYear;
 
-         const matchesCategory = filters.category === "Category" || filters.category === event.category
-         const matchesDepartment = filters.department === "Department" || filters.department === event.department
-         const matchesDateRange = (!filters.startDate || eventDate>= new Date(filters.startDate)) && (!filters.endDate || eventDate <= new Date(filters.endDate))
-         const matchesMonth = eventDate.getMonth() == currentMonth && eventDate.getFullYear() == currentYear
-         
-         return (
+        return (
           matchesCategory &&
-          matchesDepartment&&
+          matchesDepartment &&
           matchesDateRange &&
           matchesMonth
-         )
-       })
-       
-       setFilteredEvents(filtered);
-    }
+        );
+      });
+
+      setFilteredEvents(filtered);
+      console.log(events)
+    };
 
     console.log("filteredEvents: ", filteredEvents);
-    filterEvents()
-
-  }, [events, filters, currentMonth, currentMonth])
+    filterEvents();
+  }, [events, filters, currentMonth, currentMonth]);
 
   const handleNextMonth = () => {
-    setCurrentDate(
-      new Date(currentYear, currentMonth + 1, 1)
-    )
-  }
+    setCurrentDate(new Date(currentYear, currentMonth + 1, 1));
+  };
 
   const handlePreviousMonth = () => {
-    setCurrentDate(
-      new Date(currentYear, currentMonth - 1, 1)
-    )
-  }
-
+    setCurrentDate(new Date(currentYear, currentMonth - 1, 1));
+  };
 
   // Generate a mock calendar for the current month (e.g., April 2025)
-  const weekArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+  const weekArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const calendarDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
@@ -164,7 +179,8 @@ const CalendarGrid = ({ events, filters }) => {
       {/* Month Navigation */}
       <div className="flex justify-between items-center mb-4 w-full">
         <h2 className="text-lg font-bold text-gray-800">
-          {currentDate.toLocaleString("default", { month: "long" })} {currentYear}
+          {currentDate.toLocaleString("default", { month: "long" })}{" "}
+          {currentYear}
         </h2>
         <div className="flex space-x-2">
           <button
@@ -230,67 +246,78 @@ const CalendarGrid = ({ events, filters }) => {
   );
 };
 
-
-const ShowEvents = ({ filters }) => {
-  const [ event, setEvents ] = useState([]);
+const ShowEvents = ({ event, filters }) => {
+  const [event, setEvent] = useState([]);
 
   useEffect(() => {
-      const fetchEvents = async () => {
-        try {
-          const events = await getEvents(filters);
-          setEvents(Array.isArray(events) ? events : []);
-        } catch (error) {
-          console.log("Error fetching errors");
-          setEvents([]);
-          }
-        }
-        fetchEvents()
-  }, [filters])
-
-   const handleDelete = async (id) => {
-
+    const fetchEvents = async () => {
       try {
-        const response = await deleteEvent(id)
-        console.log("delete response: ", response);
-        setEvents((prevEvents) => prevEvents.filter((event) => event._id !== id));
-        toast.message("Event deleted")
+        const events = await getEvents(filters);
+        setEvent(Array.isArray(events) ? events : []);
       } catch (error) {
-        console.log("delete event error: ", error);
+        console.log("Error fetching errors");
+        setEvent([]);
       }
-    }
+    };
+    fetchEvents();
+  }, [filters]);
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await deleteEvent(id);
+      console.log("delete response: ", response);
+      //lift events to paret comp
+      setEvent((prevEvents) => prevEvents.filter((event) => event._id !== id));
+      toast.message("Event deleted");
+    } catch (error) {
+      console.log("delete event error: ", error);
+    }
+  };
+
+  if (loading){
+    return(
+      <p> Loading state</p>
+    )
+  }
   return (
       <div className="text-black mt-6 w-full">
-          <h1 className="text-2xl font-bold mb-4 text-center">Show Events</h1>
-          {event.length > 0 ? (
-              <div className="flex flex-col w-full">
-                  {event.map((event) => (
-                      <div
-                          key={event._id}
-                          className="bg-white shadow-md rounded-lg p-4 border border-gray-200 w-full"
-                      >
-                          <h2 className="text-lg font-semibold mb-2">{event.title}</h2>
-                          <p className="text-sm text-gray-600 mb-1">
-                              <span className="font-medium">Department:</span> {event.department}
-                          </p>
-                          <p className="text-sm text-gray-600 mb-1">
-                              <span className="font-medium">Category:</span> {event.category}
-                          </p>
-                          <p className="text-sm text-gray-600 mb-1">
-                              <span className="font-medium">Date:</span> {new Date(event.date).toLocaleDateString()}
-                          </p>
-                          <p className="text-sm text-gray-600">
-                              <span className="font-medium">Description:</span> {event.description}
-                          </p>
-                          <button onClick={() => handleDelete(event._id)} className="text-white bg-white border-4 hover:border-white rounded-2xl "> Delete</button>
-                      </div>
-                  ))}
-              </div>
-          ) : (
-              <p className="text-gray-500 text-center">No Events Available</p>
-          )}
+      <h1 className="text-2xl font-bold mb-4 text-center">Show Events</h1>
+    {event.length > 0 ? (
+      <div className="flex flex-col w-full">
+        {event.map((event) => (
+          <div
+            key={event._id}
+            className="bg-white shadow-md rounded-lg p-4 border border-gray-200 w-full"
+          >
+            <h2 className="text-lg font-semibold mb-2">{event.title}</h2>
+            <p className="text-sm text-gray-600 mb-1">
+              <span className="font-medium">Department:</span>{" "}
+              {event.department}
+            </p>
+            <p className="text-sm text-gray-600 mb-1">
+              <span className="font-medium">Category:</span> {event.category}
+            </p>
+            <p className="text-sm text-gray-600 mb-1">
+              <span className="font-medium">Date:</span>{" "}
+              {new Date(event.date).toLocaleDateString()}
+            </p>
+            <p className="text-sm text-gray-600">
+              <span className="font-medium">Description:</span>{" "}
+              {event.description}
+            </p>
+            <button
+              onClick={() => handleDelete(event._id)}
+              className="text-white bg-white border-4 hover:border-white rounded-2xl "
+            >
+              {" "}
+              Delete
+            </button>
+          </div>
+        ))}
       </div>
-  );
+    ) : null}
+  </div>
+);
 }
 
 const EventCalendar = () => {
@@ -300,16 +327,15 @@ const EventCalendar = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await getEvents(filters)
+        const res = await getEvents(filters);
         console.log("In EventCalendar events: ", events);
         setEvents(res);
       } catch (error) {
         console.log("Error getting events: ", error);
       }
-    }
-    fetchEvents();
-  }, [])
-
+    };
+    fetchEvents()
+  }, []);
 
   return (
     <div className="mt-12 bg-gray-100 container p-4 sm:p-6 min-h-screen min-w-screen flex justify-center items-start ">
@@ -319,8 +345,8 @@ const EventCalendar = () => {
           University Event Calendar
         </h1>
         <FilterSection setFilters={setFilters} filters={filters} />
-        <CalendarGrid events={events} filters={filters}/>
-        <ShowEvents filters={filters} />
+        <CalendarGrid events={events} filters={filters} />
+        <ShowEvents filters={filters} event={events} />
       </div>
     </div>
   );

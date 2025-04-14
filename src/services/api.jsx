@@ -1,8 +1,11 @@
 import axios from "axios";
+import { useState } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
+export const [loading, setLoading] = useState(false)
 
 export const getEvents = async ( filters = {} ) => {
+    setLoading(true)
     try {
         // console.log(API_URL + "?" + query)
         const response = await axios.get(API_URL, { params: filters })
@@ -13,6 +16,8 @@ export const getEvents = async ( filters = {} ) => {
     } catch (error) {
         console.log("Error getting events: ", error)
         return []
+    } finally {
+        setLoading(false)
     }
 }
 
@@ -37,3 +42,4 @@ export const deleteEvent = async (eventId) => {
         console.log("Error deleting event: ", error)
     }
 }
+
