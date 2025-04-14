@@ -260,10 +260,8 @@ const ShowEvents = ({ event, setEvent, filters }) => {
       } catch (error) {
         console.log("Error fetching errors");
         setEvent([]);
-      }
-      finally{
+      } finally{
         setLoading(false)
-
       };
     fetchEvents();
     }
@@ -281,52 +279,52 @@ const ShowEvents = ({ event, setEvent, filters }) => {
     }
   };
 
-  if (loading){
-    return(
-      <p> Loading state</p>
-    )
-  }
-  return (
-
-      <div className="text-black mt-6 w-full">
-      <h1 className="text-2xl font-bold mb-4 text-center">Show Events</h1>
-    {event.length > 0 ? (
-      <div className="flex flex-col w-full">
-        {event.map((event) => (
-          <div
-            key={event._id}
-            className="bg-white shadow-md rounded-lg p-4 border border-gray-200 w-full"
-          >
-            <h2 className="text-lg font-semibold mb-2">{event.title}</h2>
-            <p className="text-sm text-gray-600 mb-1">
-              <span className="font-medium">Department:</span>{" "}
-              {event.department}
-            </p>
-            <p className="text-sm text-gray-600 mb-1">
-              <span className="font-medium">Category:</span> {event.category}
-            </p>
-            <p className="text-sm text-gray-600 mb-1">
-              <span className="font-medium">Date:</span>{" "}
-              {new Date(event.date).toLocaleDateString()}
-            </p>
-            <p className="text-sm text-gray-600">
-              <span className="font-medium">Description:</span>{" "}
-              {event.description}
-            </p>
-            <button
-              onClick={() => handleDelete(event._id)}
-              className="text-white bg-white border-4 hover:border-white rounded-2xl "
+  // if (loading){
+  //   return <p className="text-black"> Loading state</p>
+  // } 
+    return (
+  
+        <div className="text-black mt-6 w-full">
+        <h1 className="text-2xl font-bold mb-4 text-center">Show Events</h1>
+      {event.length > 0 ? (
+        <div className="flex flex-col w-full">
+          {event.map((event) => (
+            <div
+              key={event._id}
+              className="bg-white shadow-md rounded-lg p-4 border border-gray-200 w-full"
             >
-              {" "}
-              Delete
-            </button>
-          </div>
-        ))}
-      </div>
-    ) : null}
-  </div>
-);
-}
+              <h2 className="text-lg font-semibold mb-2">{event.title}</h2>
+              <p className="text-black">checkers if its there</p>
+              <p className="text-sm text-gray-600 mb-1">
+                <span className="font-medium">Department:</span>{" "}
+                {event.department}
+              </p>
+              <p className="text-sm text-gray-600 mb-1">
+                <span className="font-medium">Category:</span> {event.category}
+              </p>
+              <p className="text-sm text-gray-600 mb-1">
+                <span className="font-medium">Date:</span>{" "}
+                {new Date(event.date).toLocaleDateString()}
+              </p>
+              <p className="text-sm text-gray-600">
+                <span className="font-medium">Description:</span>{" "}
+                {event.description}
+              </p>
+              <button
+                onClick={() => handleDelete(event._id)}
+                className="text-white bg-white border-4 hover:border-white rounded-2xl "
+              >
+                {" "}
+                Delete
+              </button>
+            </div>
+          ))}
+        </div>
+      ) : <p className="text-center text-gray-500">No events found.</p>}
+    </div>
+  );
+  }
+
 
 const EventCalendar = () => {
   const [filters, setFilters] = useState({});

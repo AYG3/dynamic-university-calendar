@@ -14,7 +14,7 @@ export const Navbar = () => {
                     to='/event2' 
                     className="text-white font-semibold hover:text-gray-200 transition-colors"
                 >
-                    Event2
+                    Add Event
                 </Link>
             </div>
         </nav>

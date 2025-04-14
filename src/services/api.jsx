@@ -6,7 +6,7 @@ export const getEvents = async ( filters = {} ) => {
     try {
         // console.log(API_URL + "?" + query)
         const response = await axios.get(API_URL, { params: filters })
-        console.log("from API.jsx -  - -  response.data: ", response.data)
+        // console.log("from API.jsx -  - -  response.data: ", response.data)
         // console.log("response.url: ", response.config.url)
     
         return response.data

@@ -23,78 +23,80 @@ const FilterSection = ({ filters, setFilters }) => {
   }, [setFilters]);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 mb-8 w-full text-gray-800 mt-12">
-      {/* CATEGORY */}
-      <div className="flex flex-col">
-        <label htmlFor="category" className="text-sm font-medium text-gray-700 mb-1">
-          Category
-        </label>
-        <select
-          className="p-2 border rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          name="category"
-          value={filters.category || "Category"}
-          onChange={handleFilterChange}
-        >
-          <option value="Category">Category</option>
-          <option value="General Announcements">General Announcements</option>
-          <option value="Seminars">Seminars</option>
-          <option value="Workshops">Workshops</option>
-          <option value="Sports">Sports</option>
-          <option value="Services">Services</option>
-          <option value="Events">Events</option>
-        </select>
-      </div>
+    <div className="flex justify-center mt-12">
+      <div className="grid justify-center items-center grid-cols-1 sm:grid-cols-4 gap-6 mb-8 w-full max-w-3/5 text-gray-800 mt-12 p-6 rounded-lg">
+        {/* CATEGORY */}
+        <div className="flex flex-col">
+          <label htmlFor="category" className="text-sm font-medium text-gray-700 mb-1">
+            Category
+          </label>
+          <select
+            className="p-2 border rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            name="category"
+            value={filters.category || "Category"}
+            onChange={handleFilterChange}
+          >
+            <option value="Category">Category</option>
+            <option value="General Announcements">General Announcements</option>
+            <option value="Seminars">Seminars</option>
+            <option value="Workshops">Workshops</option>
+            <option value="Sports">Sports</option>
+            <option value="Services">Services</option>
+            <option value="Events">Events</option>
+          </select>
+        </div>
 
-      {/* DEPARTMENT */}
-      <div className="flex flex-col">
-        <label htmlFor="department" className="text-sm font-medium text-gray-700 mb-1">
-          Department
-        </label>
-        <select
-          className="p-2 border rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          name="department"
-          value={filters.department}
-          onChange={handleFilterChange}
-        >
-          <option value="Department" disabled>
+        {/* DEPARTMENT */}
+        <div className="flex flex-col">
+          <label htmlFor="department" className="text-sm font-medium text-gray-700 mb-1">
             Department
-          </option>
-          <option value="General">General</option>
-          <option value="Computer Science">Computer Science</option>
-          <option value="Engineering">Engineering</option>
-          <option value="Business">Business</option>
-          <option value="Mathematics">Mathematics</option>
-        </select>
-      </div>
+          </label>
+          <select
+            className="p-2 border rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            name="department"
+            value={filters.department}
+            onChange={handleFilterChange}
+          >
+            <option value="Department" disabled>
+              Department
+            </option>
+            <option value="General">General</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Business">Business</option>
+            <option value="Mathematics">Mathematics</option>
+          </select>
+        </div>
 
-      {/* START DATE */}
-      <div className="flex flex-col">
-        <label htmlFor="startDate" className="text-sm font-medium text-gray-700 mb-1">
-          Start Date
-        </label>
-        <input
-          type="date"
-          className="p-2 border rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          name="startDate"
-          value={filters.startDate}
-          onChange={handleFilterChange}
-          placeholder="Start Date"
-        />
-      </div>
+        {/* START DATE */}
+        <div className="flex flex-col">
+          <label htmlFor="startDate" className="text-sm font-medium text-gray-700 mb-1">
+            Start Date
+          </label>
+          <input
+            type="date"
+            className="p-2 border rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            name="startDate"
+            value={filters.startDate}
+            onChange={handleFilterChange}
+            placeholder="Start Date"
+          />
+        </div>
 
-      {/* END DATE */}
-      <div className="flex flex-col">
-        <label htmlFor="endDate" className="text-sm font-medium text-gray-700 mb-1">
-          End Date
-        </label>
-        <input
-          type="date"
-          className="p-2 border rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          name="endDate"
-          value={filters.endDate}
-          onChange={handleFilterChange}
-          placeholder="End Date"
-        />
+        {/* END DATE */}
+        <div className="flex flex-col">
+          <label htmlFor="endDate" className="text-sm font-medium text-gray-700 mb-1">
+            End Date
+          </label>
+          <input
+            type="date"
+            className="p-2 border rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            name="endDate"
+            value={filters.endDate}
+            onChange={handleFilterChange}
+            placeholder="End Date"
+          />
+        </div>
       </div>
     </div>
   );
