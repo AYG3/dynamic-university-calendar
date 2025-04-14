@@ -246,8 +246,8 @@ const CalendarGrid = ({ events, filters }) => {
   );
 };
 
-const ShowEvents = ({ event, filters }) => {
-  const [event, setEvent] = useState([]);
+const ShowEvents = ({ event, setEvent, filters }) => {
+  // const [event, setEvent] = useState([]);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -346,7 +346,7 @@ const EventCalendar = () => {
         </h1>
         <FilterSection setFilters={setFilters} filters={filters} />
         <CalendarGrid events={events} filters={filters} />
-        <ShowEvents filters={filters} event={events} />
+        <ShowEvents filters={filters} event={events} setEvent={setEvents}/>
       </div>
     </div>
   );
